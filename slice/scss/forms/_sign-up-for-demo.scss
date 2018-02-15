@@ -1,0 +1,35 @@
+.form-sign-up-for-demo {
+  margin-left: -20px;
+  margin-right: -20px;
+  margin-top: 20px;
+
+  @media (min-width: $bp-small) {
+    margin-top: 40px;
+  }
+
+  .form-item {
+    width: 148px;
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .webform-component-markup {
+    display: block;
+    width: auto;
+  }
+
+  select, input:not([type=submit]):not([type=checkbox]):not([type=radio]), textarea {
+    width: 100%;
+    @include input-placeholder(#fff);
+  }
+
+  .form-actions {
+    margin-top: 10px;
+
+    @media (min-width: $bp-small) {
+      margin-top: 20px;
+    }
+  }
+}

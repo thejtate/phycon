@@ -1,0 +1,40 @@
+.b-careers {
+  font-size: 18px;
+  font-style: italic;
+  margin-top: 50px;
+  width: 450px;
+
+  @media (min-width: $bp-small) {
+    font-size: 27px;
+  }
+
+  .item {
+    margin-bottom: 20px;
+
+    @media (min-width: $bp-small) {
+      margin-bottom: 40px;
+    }
+  }
+
+  a {
+    color: #b9baba;
+    text-decoration: none;
+  }
+
+  .col {
+
+    &:first-child {
+
+      @media (min-width: $bp-small) {
+        padding-right: 10px;
+      }
+    }
+
+    &:last-child {
+
+      @media (min-width: $bp-small) {
+        padding-left: 10px;
+      }
+    }
+  }
+}

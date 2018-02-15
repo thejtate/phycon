@@ -1,0 +1,401 @@
+.site-header {
+  font-size: 11px;
+  line-height: 1.28;
+  text-transform: uppercase;
+  position: relative;
+  font-family: $cabin-bold;
+  background: #fff;
+
+  .container {
+    z-index: 120;
+    height: 126px;
+
+    @media (min-width: $bp-small) {
+      height: 150px;
+    }
+  }
+
+  .form-search {
+    position: absolute;
+    bottom: 59px;
+    right: 0;
+    width: 148px;
+    z-index: 1;
+
+    @media (min-width: $bp-small) {
+      bottom: 70px;
+      right: 34px;
+      width: 175px;
+    }
+
+    @media (min-width: $bp-middle) {
+      bottom: 73px;
+    }
+
+    @media (min-width: $bp-large) {
+      width: 200px;
+    }
+
+    .form-submit {
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      @include translateY(-50%);
+      @include oneline-sprite-box($icons, btn-search);
+      border: none;
+      padding: 0;
+      @include text-hide();
+
+      &:hover {
+        @include oneline-sprite-box($icons, btn-search);
+      }
+    }
+
+    .form-text {
+      background: transparent !important;
+      border: 1px solid #aaabab !important;
+      padding: 6px 10px 6px 30px !important;
+      width: 100%;
+      text-align: left !important;
+
+      &:focus:not([type=file]) {
+        background: $color-1 !important;
+        color: #fff !important;
+        border: 1px solid $color-1 !important;
+      }
+    }
+  }
+
+  .logo, .navigation {
+    position: absolute;
+  }
+
+  .logo {
+    top: 50%;
+    @include translate(0, -50%);
+    width: 130px;
+    left: 0;
+
+    @media (min-width: $bp-small) {
+      width: 174px;
+      left: 84px;
+    }
+  }
+
+  .navigation {
+    z-index: 1;
+    top: 0;
+    right: 0;
+
+    @media (min-width: $bp-small) {
+      right: 34px;
+    }
+
+    .content {
+
+      li {
+        position: relative;
+        float: left;
+
+        &:before {
+          @include pseudo-block($right: -1px, $top: 8px, $bottom: 8px);
+          border-right: 1px solid #fff;
+          z-index: 1;
+        }
+
+        &:last-child:before {
+          display: none;
+        }
+
+        &:hover, &.active, &.active-trail {
+
+          &:before {
+            display: none;
+          }
+
+          a {
+            background: #fff;
+            color: $color-2;
+          }
+        }
+      }
+
+      a {
+        background: $color-2;
+        color: #fff;
+        padding: 10px;
+
+        @media (min-width: $bp-small) {
+          padding: 14px;
+        }
+      }
+    }
+  }
+
+  .btn-nav {
+    width: 43px;
+    height: 43px;
+    position: absolute;
+    right: -5px;
+    bottom: 20px;
+    display: block;
+
+    @media (min-width: $bp-small) {
+      display: none;
+    }
+
+    &:before, &:after {
+      @include pseudo-block($left: 5px, $right: 5px);
+      height: 6px;
+      border-radius: 5px;
+      background: $color-1;
+    }
+
+    &:before {
+      top: 13px;
+    }
+
+    &:after {
+      bottom: 13px;
+    }
+  }
+
+  .block-menu-block {
+    display: none;
+    position: absolute;
+    right: -5vw;
+    top: 100%;
+    width: calc(100vw - 5%);
+    background: rgba(255, 255, 255, .95);
+    padding-bottom: 14px;
+    padding-top: 14px;
+    box-shadow: -4px 4px 4px -2px rgba(0, 0, 0, .4);
+
+    @media (min-width: $bp-small) {
+      display: block;
+      position: static;
+      width: auto;
+      background: transparent;
+      padding-bottom: 0;
+      padding-top: 0;
+      box-shadow: none;
+    }
+
+    .mobile-nav & {
+      display: block;
+    }
+  }
+
+  .nav {
+    z-index: 2;
+
+    @media (min-width: $bp-small) {
+      position: absolute;
+      border-bottom: 1px solid #aaabab;
+      right: 34px;
+      bottom: 24px;
+      @include translate(0, 0);
+    }
+
+    .mobile-only {
+      display: block;
+
+      @media (min-width: $bp-middle) {
+        display: none;
+      }
+    }
+
+    ul {
+      text-align: right;
+
+      @media (min-width: $bp-small) {
+        text-align: center;
+      }
+
+      li {
+        position: relative;
+        @include transition(background .3s);
+
+        &:hover, &.active, &.active-trail {
+
+          @media (min-width: $bp-small) {
+            background: $color-2;
+          }
+
+          & > a {
+            color: $color-2;
+
+            @media (min-width: $bp-small) {
+              color: #fff;
+            }
+          }
+        }
+
+        &.active-lvl > ul {
+          display: block;
+        }
+
+        @media (min-width: $bp-small) {
+          float: left;
+        }
+
+        //@media (min-width: $bp-middle) {
+          @media (min-width: $bp-small) {
+
+          &:hover > ul {
+
+            .desktop & {
+              opacity: 1;
+              visibility: visible;
+            }
+
+            .mobile &, .tablet & {
+              display: block;
+            }
+          }
+        }
+      }
+
+      a {
+        color: $color;
+        padding: 12px 5vw;
+
+        @media (min-width: $bp-small) {
+          padding: 12px 22px;
+        }
+
+        @media (min-width: $bp-middle) {
+          padding: 16px 28px 16px;
+        }
+
+        @media (min-width: $bp-large) {
+          padding: 16px 36px 16px;
+        }
+      }
+
+      ul {
+        padding-right: 5vw;
+
+        @media (min-width: $bp-small) {
+          padding-right: 0;
+          @include transition(opacity .3s, visibility .3s);
+          position: absolute;
+          left: 0;
+          top: 100%;
+          min-width: 100%;
+          background: $color-2;
+          padding-top: 40px;
+          padding-bottom: 12px;
+        }
+
+        .desktop & {
+          display: none;
+
+          @media (min-width: $bp-small) {
+            opacity: 0;
+            visibility: hidden;
+            display: block;
+          }
+        }
+
+        .mobile &, .tablet & {
+          display: none;
+        }
+
+        li {
+          float: none;
+
+          &:hover, &.active, &.active-trail {
+
+            @media (min-width: $bp-small) {
+              background: #fff;
+            }
+
+            & > a {
+              color: $color-2;
+            }
+          }
+
+          &.active-lvl > a:before {
+            @include pseudo-block($bottom: 0, $right: 0);
+            border-bottom: 1px solid #aaabab;
+            width: 5vw;
+
+            @media (min-width: $bp-small) {
+              display: none;
+            }
+          }
+        }
+
+        a {
+          border-right: 1px solid #aaabab;
+          color: $color;
+          padding: 8px 5vw;
+
+          @media (min-width: $bp-small) {
+            border-right: none;
+            color: #fff;
+            padding: 9px 16px;
+          }
+        }
+
+        ul {
+
+          @media (min-width: $bp-small) {
+            left: 100%;
+            top: 0;
+            //@include translate(0, -50%);
+            //background: #fff;
+            padding-top: 0;
+            padding-bottom: 0;
+          }
+
+          li {
+
+            &:hover, &.active, &.active-trail {
+
+              @media (min-width: $bp-small) {
+                //background: $color-2;
+              }
+
+              & > a {
+                //color: $color-2;
+
+                @media (min-width: $bp-small) {
+                  //color: #fff;
+                }
+              }
+            }
+          }
+
+          a {
+            //color: $color;
+
+            @media (min-width: $bp-small) {
+              //color: $color-2;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  a {
+    text-decoration: none;
+    @include transition(color .3s, background .3s);
+    display: block;
+    position: relative;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    @include clearfix();
+
+    li {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+  }
+}

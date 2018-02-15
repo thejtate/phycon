@@ -1,0 +1,8 @@
+name = Phycon custom functional
+description = Phycon custom module
+core = 7.x
+package = custom
+
+files[] = phycon_custom.admin.inc
+
+configure = admin/config/phycon

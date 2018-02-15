@@ -1,0 +1,64 @@
+/* Field collection */
+.field-collection-container,
+.field-collection-view {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.field-collection-view ul.field-collection-view-links {
+  margin-top: 0;
+}
+
+.field-collection-container .field-item {
+  margin-bottom: 0;
+}
+
+ul.field-collection-view-links li {
+  float: left;
+  margin-left: 5px;
+}
+
+ul.field-collection-view-links li a {
+  padding: 2px 5px;
+  font-size: 11px;
+  text-transform: uppercase;
+  margin-right: 0;
+  color: #333;
+  border-style: solid;
+  background-color: #DDD;
+  border-color: #BBB;
+  border-width: 1px;
+  height: auto;
+  display: block;
+  text-decoration: none;
+}
+
+.action-links-field-collection-add li a {
+  color: #333;
+  border-style: solid solid solid;
+  background-color: #DDD;
+  border-color: #BBB;
+  border-width: 1px;
+  height: auto;
+  margin-right: 0.5em;
+  padding: 5px 10px;
+  text-decoration: none;
+}
+
+.action-links li {
+  list-style-type: none;
+}
+
+/*section.section-top {*/
+  /*display: none;*/
+/*}*/
+
+/* Homepage slider */
+.front .sidebar .part-with-bg a {
+  /*color: inherit;*/
+}
+
+.front .sidebar .part-with-bg a:hover {
+  text-decoration: none;
+}

@@ -1,0 +1,24 @@
+<?php
+/**
+* @file
+* Install, update and uninstall functions for the custom module.
+*/
+/**
+ * Implements hook_uninstall().
+ */
+module_load_include("inc", "phycon_custom", "phycon_custom.maps");
+
+function phycon_custom_uninstall() {
+
+  $settings = _phycon_custom_admin_settings_map();
+  foreach($settings as $var => $data) {
+    variable_del($var);
+  }
+
+  $socials_share = _phycon_custom_social_share_admin_settings_map();
+  foreach($socials_share as $var => $data) {
+    variable_del($var);
+  }
+}
+
+

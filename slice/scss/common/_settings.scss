@@ -1,0 +1,55 @@
+$icons: sprite-map('icons/*.png', $layout: smart);
+//$icons2: sprite-map("icons2x/*.png", $layout: smart);
+
+$experimental-support-for-svg: true;
+$experimental-support-for-opera: false;
+
+//color
+$color: #abacab;
+$color-0: #2077a5;
+$color-1: #549dc4;
+$color-2: rgba(37, 137, 190, 0.8);
+$color-3: #f7941d;
+$color-4: rgba(253, 146, 21, 0.8);
+$color-5: #fe7221;
+$color-6: #8dc63f;
+$color-7: rgba(3, 110, 166, 0.7);
+$color-8: #ed1c24;
+$color-9: rgba(141, 198, 63, .66);
+
+//fonts
+$lato-regular: lato-regular;
+$lato-light: lato-light;
+$lato-italic: lato-italic;
+$lato-lightitalic: lato-lightitalic;
+$lato-thinitalic: lato-thinitalic;
+$lato-heavy: lato-heavy;
+$lato-black: lato-black;
+$cabin-bold: cabin-bold;
+$cabin-regular: cabin-regular;
+
+//grid vars
+//widths
+$width-xsmall: 90%;
+//xs < $bp-small
+$bp-small: 768px;
+$width-small: 730px;
+//$bp-middle > sm >= $bp-small
+$bp-middle: 992px;
+$width-middle: 970px;
+//$bp-large > md >= $bp-middle
+$bp-large: 1160px;
+$width-large: 1125px;
+
+//offsets
+$container-padding-left: 0;
+$container-padding-right: 0;
+
+$container-fluid-padding-left: 0;
+$container-fluid-padding-right: 0;
+
+$row-margin-left: 0;
+$row-margin-right: 0;
+
+$col-padding-left: 0;
+$col-padding-right: 0;

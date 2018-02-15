@@ -1,0 +1,33 @@
+name = Phycon
+description = Site for Phycon
+core = 7.x
+
+; REGIONS
+regions[header] = Header
+regions[search] = Search
+regions[top_menu] = Top menu
+regions[section_top] = Section top
+regions[content_top] = Content top
+regions[content] = Content
+regions[content_bottom] = Content bottom
+regions[sidebar_left_title] = Sidebar left title description
+regions[sidebar_left_desc] = Sidebar left top description
+regions[sidebar_left_email] = Sidebar left email
+regions[sidebar_left] = Sidebar left
+regions[popups] = Popup
+regions[footer_top] = Footer top
+regions[footer] = Footer
+regions[footer_bottom] = Footer bottom
+
+; CSS
+stylesheets[all][] = css/styles.css
+stylesheets[all][] = css/custom.css
+
+; JS
+scripts[] = js/lib/device.min.js
+scripts[] = js/lib/skrollr.min.js
+scripts[] = js/lib/jquery.flexslider-min.js
+scripts[] = js/lib/bootstrap-modal.min.js
+scripts[] = js/lib/scrollreveal.min.js
+scripts[] = js/lib/jquery.mb.browser.min.js
+scripts[] = js/js.js

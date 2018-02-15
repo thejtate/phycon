@@ -1,0 +1,16 @@
+Index: trunk/sites/all/modules/contrib/vcardfield/vcardfield.module
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- trunk/sites/all/modules/contrib/vcardfield/vcardfield.module	(revision bad32dccd579bb6cc8d0ebb91512e8db3fa37a0d)
++++ trunk/sites/all/modules/contrib/vcardfield/vcardfield.module	(revision )
+@@ -539,6 +539,8 @@
+ 
+   echo "BEGIN:VCARD";
+   echo "\n";
++  echo "VERSION:3.0";
++  echo "\n";
+   echo $output;
+   echo "\n";
+   echo "END:VCARD";

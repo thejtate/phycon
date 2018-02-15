@@ -1,0 +1,143 @@
+.sidebar {
+  position: relative;
+  z-index: 101;
+  text-align: center;
+  font-size: 14px;
+  margin-bottom: 20px;
+
+  @media (min-width: $bp-small) {
+    font-size: 16px;
+    margin-bottom: 40px;
+  }
+
+  @media (min-width: $bp-middle) {
+    width: 450px;
+    float: left;
+    margin-bottom: 0;
+    text-align: left;
+  }
+
+  .front & {
+    float: none;
+    margin-bottom: 0;
+  }
+
+  .part-with-bg {
+    text-align: left;
+    color: #fff;
+    position: relative;
+    z-index: 1;
+    padding: 20px 20px 20px 0;
+    margin-bottom: 20px;
+    min-height: 256px;
+    max-width: 260px;
+
+    @media (min-width: $bp-small) {
+      padding-bottom: 42px;
+      margin-bottom: 46px;
+      max-width: 350px;
+    }
+
+    @media (min-width: $bp-middle) {
+      max-width: none;
+    }
+
+    .front & {
+      padding-top: 30px;
+      padding-bottom: 30px;
+      margin-bottom: 0;
+      min-height: 0;
+
+      @media (min-width: $bp-small) {
+        padding-top: 90px;
+        padding-bottom: 90px;
+      }
+    }
+
+    &:before {
+      @include pseudo-block($right: 0, $bottom: 0);
+      width: 2560px;
+      z-index: -1;
+      top: 0;
+
+      @media (min-width: $bp-small) {
+        top: -21px;
+      }
+    }
+
+    &.color-style-a:before {
+      background: $color-4;
+    }
+
+    &.color-style-b:before {
+      background: $color-7;
+    }
+
+    &.color-style-c:before {
+      background: $color-9;
+    }
+  }
+
+  h1 {
+
+    .page-news & {
+      margin: 20px 0;
+
+      @media (min-width: $bp-middle) {
+        margin: 45px 0;
+      }
+    }
+  }
+
+  h3 {
+    margin-bottom: 24px;
+
+    @media (min-width: $bp-small) {
+      margin-bottom: 54px;
+    }
+  }
+
+  .block-fieldblock {
+    margin-bottom: 22px;
+  }
+
+  .text {
+    font-family: $cabin-bold;
+    margin-top: 10px;
+
+    @media (min-width: $bp-small) {
+      padding-right: 50px;
+      margin-top: 90px;
+
+      .page-news & {
+        padding-right: 120px;
+      }
+    }
+
+    .front & {
+      margin-top: 0;
+    }
+  }
+
+  .item-info {
+    display: block;
+
+    @media (min-width: $bp-small) {
+      margin-right: 30px;
+      display: inline-block;
+      vertical-align: top;
+    }
+  }
+
+  .img {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+
+    .img-desktop {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+}

@@ -1,0 +1,42 @@
+.b-modal {
+  text-align: center;
+
+  @media (min-width: 768px) {
+    .modal-dialog {
+      width: 585px;
+    }
+  }
+
+  .modal-content {
+    border-radius: 0;
+    padding: 20px;
+
+    @media (min-width: $bp-small) {
+      padding: 55px 116px;
+    }
+  }
+
+  h5 {
+    color: $color;
+  }
+
+  .close {
+    position: absolute;
+    top: 7px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 32px;
+    color: #abacab;
+    line-height: 1;
+    @include transition(color .3s);
+
+    &:hover {
+      color: $color-0;
+    }
+  }
+}
+
+.modal-backdrop.in {
+  opacity: .35;
+}

@@ -1,0 +1,86 @@
+.b-faq {
+
+  .items {
+    text-align: center;
+  }
+
+  .item, .row, .text, .node-news, .desc, .field-collection-view {
+    min-height: auto;
+
+    @media (min-width: $bp-middle) {
+      min-height: 350px;
+    }
+  }
+
+  .item {
+    text-align: center;
+    margin-bottom: 50px;
+    display: inline-block;
+
+    &.active {
+
+      .field-collection-view {
+        @include box-shadow(none);
+        background: transparent;
+      }
+
+      .text {
+        opacity: 1;
+        z-index: 20;
+      }
+
+      .row {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    .field-collection-view {
+      padding: 0 40px;
+      @include box-shadow(2px 2px 6px -1px rgba(0, 0, 0, 0.52));
+      background: #fff;
+    }
+
+    & > div > .row {
+      padding: 40px 20px;
+
+      .desktop & {
+        justify-content: center;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        flex-shrink: 0;
+        @include flex-flow(row wrap);
+        align-content: center;
+        padding: 40px 20px;
+      }
+    }
+
+    .text {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-items: center;
+      align-content: stretch;
+      bottom: 0;
+      flex-flow: row wrap;
+      height: 350px;
+      text-align: center;
+      overflow-y: auto;
+      overflow-x: hidden;
+      opacity: 0;
+      @include transition(opacity .2s)
+    }
+
+    .row {
+      @include transition(opacity .4s, visibility .4s);
+      visibility: visible;
+    }
+  }
+}

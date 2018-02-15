@@ -1,0 +1,221 @@
+<?php
+/**
+ * @file Site custom functionality
+ */
+
+
+module_load_include("inc", "phycon_custom", "phycon_custom.maps");
+
+/**
+ * Implements hook_menu().
+ */
+function phycon_custom_menu() {
+  $items = array();
+
+  $items['admin/config/phycon'] = array(
+    'title' => t('Phycon'),
+    'position' => 'right',
+    'weight' => -5,
+    'page callback' => 'system_admin_menu_block_page',
+    'access arguments' => array('access administration pages'),
+    'file' => 'system.admin.inc',
+    'file path' => drupal_get_path('module', 'system'),
+  );
+  $items['admin/config/phycon/settings'] = array(
+    'title' => t('Phycon Settings'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('phycon_custom_admin_settings'),
+    'access arguments' => array('access to phycon custom settings'),
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'phycon_custom.admin.inc',
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_permission().
+ */
+function phycon_custom_permission(){
+  return array(
+    'access to phycon custom settings' => array(
+      'title' => t('Access to phycon custom settings'),
+      'description' => t('Access to phycon custom settings on site.'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_theme().
+ */
+function phycon_custom_theme($existing, $type, $theme, $path) {
+  $theme_path = drupal_get_path('module', 'phycon_custom');
+  return array(
+    'phycon_custom__footer_contacts' => array(
+      'template' => 'phycon-custom--footer-contacts',
+      'arguments' => array('data' => NULL),
+      'path' => $theme_path . '/templates',
+    ),
+    'phycon_custom__social_share_links' => array(
+      'template' => 'phycon-custom--social-share-links',
+      'variables' => array('services' => NULL, 'data' => NULL),
+      'path' => $theme_path . '/templates',
+    ),
+  );
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function phycon_custom_block_info() {
+  $blocks = array();
+  $blocks['phycon_custom_footer_contacts'] = array(
+    'info' => t('Footer contacts'),
+  );
+  $blocks['phycon_custom_social_share_block'] = array(
+    'info' => t('Social Share block'),
+    'cache' => DRUPAL_CACHE_PER_PAGE,
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function phycon_custom_block_view($delta = '') {
+  $block = array();
+  switch ($delta) {
+    case 'phycon_custom_footer_contacts':
+      $block['subject'] = '';
+      $block['content'] = _phycon_custom_footer_contacts_block_content();
+      break;
+    case 'phycon_custom_social_share_block':
+      $block['subject'] = t('');
+      $block['content'] = _phycon_custom_social_share_block_content();
+  }
+
+  return $block;
+}
+
+
+/**
+ * Footer contacts block.
+ *
+ * @return null|string
+ */
+function _phycon_custom_footer_contacts_block_content() {
+  $settings = _phycon_custom_admin_settings_map();
+  $output = theme("phycon_custom__footer_contacts", array('data' => $settings));
+  return $output;
+}
+
+/**
+ * Social Share block.
+ *
+ * @return null|string
+ */
+function _phycon_custom_social_share_block_content() {
+  $socials = _phycon_custom_social_share_admin_settings_map();
+  $output = theme("phycon_custom__social_share_links", array('services' => $socials));
+  return $output;
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function phycon_custom_preprocess_phycon_custom__footer_contacts(&$variables) {
+  $items = array();
+
+  foreach ($variables['data'] as $key => $data) {
+    $item = variable_get($key, "");
+    $title = (isset($data['title'])) ? $data['title'] : "";
+
+    if (!empty($item)) {
+      switch ($key) {
+        case 'phycon_custom_settings_phone':
+          $items[$key] = '<strong>' . $title . '</strong> ' . l($item, 'tel:' . $item, array('absolute' => TRUE));
+          break;
+        case 'phycon_custom_settings_fax':
+          $items[$key] = '<strong>' . $title . '</strong> ' . $item;
+          break;
+        case 'phycon_custom_settings_email':
+          $items[$key] = l($item, 'mailto:' . $item, array('absolute' => TRUE));
+          break;
+        case 'phycon_custom_settings_linkedin':
+          $items[$key] = '<p><a href='. $item .' target="_blank"><span class="ico ss-icon ss-social-regular ss-linkedin"></span></a></p>';
+          break;
+        case 'phycon_custom_settings_address':
+          $items[$key] = '<p>' . $item . '</p>';
+          break;
+        default:
+          $items[$key] = '<strong>' . $title . '</strong> ' . $item;
+          break;
+      }
+    }
+  }
+  $variables['contacts'] = $items;
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function phycon_custom_preprocess_phycon_custom__social_share_links(&$vars) {
+
+  if (!module_exists('sharethis')) {
+    return;
+  }
+
+  module_load_include("module", "sharethis", "sharethis");
+
+  $items = array();
+
+  $data_options = sharethis_get_options_array();
+  $path = isset($_GET['q']) ? $_GET['q'] : '<front>';
+  if ($path == variable_get('site_frontpage')) {
+    $path = "<front>";
+  }
+  $m_path = url($path, array('absolute' => TRUE));
+  $title = decode_entities(drupal_get_title());
+
+  $data = isset($vars['data']) ? $vars['data'] : array();
+  $m_path = isset($data['url']) ? $data['url'] : $m_path;
+  $title = isset($data['title']) ? $data['title'] : $title;
+  $summary = isset($data['summary']) ? $data['summary'] : '';
+
+  foreach ($vars['services'] as $key => $service) {
+
+    $enabled = variable_get($key, "");
+
+    if ($enabled) {
+
+      $class = (isset($service['class'])) ? $service['class'] : "";
+
+      $attributes = array(
+        'st_url' => $m_path,
+        'st_title' => $title,
+        'class' => $class,
+      );
+      if ($service['title'] == t('Twitter')) {
+        if (!empty($data_options['twitter_handle'])) {
+          $attributes['st_via'] = $data_options['twitter_handle'];
+          $attributes['st_username'] = $data_options['twitter_recommends'];
+        }
+      }
+
+      drupal_alter('phycon_custom_social_share_attributes', $attributes);
+      // Render the span tag.
+      $st_spans = theme('html_tag', array(
+        'element' => array(
+          '#tag' => 'span',
+          '#attributes' => $attributes,
+          '#value' => '', // It's an empty span tag.
+        ),
+      ));
+
+      $items[] = '<a href="#">' . $st_spans . '</a>';
+    }
+  }
+
+  sharethis_include_js();
+  $vars['social_share_menu'] = theme('item_list', array('items' => $items), NULL, 'ul');
+}

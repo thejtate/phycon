@@ -1,0 +1,150 @@
+body:not(.front) .section-top {
+  height: 225px;
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 150px;
+
+  .bg {
+    height: calc(100% + 75px);
+  }
+}
+
+body:not(.front).section-top-img-big .section-top {
+  height: 304px;
+}
+
+.section-top {
+  position: relative;
+  background: #fff;
+
+  a {
+    color: #fff;
+  }
+
+  .bg {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+
+    .flex-viewport, .slides {
+      height: 100%;
+    }
+
+    .slides > li {
+      height: 100%;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: 50% 50%;
+    }
+
+    .flex-direction-nav {
+      display: none;
+    }
+  }
+
+  .content-slides {
+    padding-bottom: 80px;
+
+    @media (min-width: $bp-small) {
+      padding-bottom: 0;
+    }
+
+    .slides {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      min-height: 300px;
+
+      @media (min-width: $bp-small) {
+        min-height: 670px;
+      }
+    }
+
+    .section-inner, .sidebar, .field-collection-view, .field-collection-view > div, .field-collection-view > div > div {
+      height: 100%;
+    }
+
+    .part-with-bg {
+      min-height: 100%;
+    }
+
+    .flex-direction-nav {
+      display: none;
+
+      @media (min-width: $bp-small) {
+        display: block;
+      }
+
+      .mobile &, .tablet & {
+        display: none;
+      }
+
+      .flex-nav-prev {
+        display: none;
+      }
+
+      .flex-nav-next {
+        position: absolute;
+        right: 5%;
+        top: 50%;
+        @include translate(0, -50%);
+        @include text-hide();
+        z-index: 6;
+
+        a {
+          @include oneline-sprite-box($icons, ico-arrow);
+          display: block;
+        }
+      }
+    }
+  }
+
+  .flexslider {
+
+    ul, li {
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    .flex-control-nav {
+      display: none;
+    }
+  }
+
+  .btn {
+    position: absolute;
+    z-index: 101;
+    bottom: -56px;
+    right: 50%;
+    @include translate(50%, 0);
+
+    @media (min-width: $bp-small) {
+      top: 10%;
+      right: 0;
+      bottom: auto;
+      @include translate(0, 0);
+    }
+
+    @media (min-width: $bp-middle) {
+      top: 50%;
+      right: 12%;
+      @include translate(0, -50%);
+    }
+
+    @media (min-width: 1400px) {
+      right: -40px;
+    }
+  }
+}

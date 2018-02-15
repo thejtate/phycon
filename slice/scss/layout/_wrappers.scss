@@ -1,0 +1,12 @@
+.outer-wrapper {
+  position: relative;
+  overflow: hidden;
+
+  &.active {
+    overflow: visible;
+  }
+}
+
+.content-wrapper {
+
+}

@@ -1,0 +1,25 @@
+.section-what-we-do {
+  background: $color-6;
+  color: #fff;
+  text-align: center;
+  padding: 30px 0 37px;
+
+  @media (min-width: $bp-small) {
+    padding: 40px 0 47px;
+  }
+
+  .section-inner {
+    max-width: 700px;
+  }
+
+  .btn {
+    margin-top: 14px;
+    color: #fff;
+    border-color: #fff;
+
+    &:hover {
+      background: transparent;
+      border-color: transparent;
+    }
+  }
+}

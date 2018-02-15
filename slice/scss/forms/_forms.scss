@@ -1,0 +1,80 @@
+input:not([type=checkbox]):not([type=radio]), select, textarea {
+  @include appearance(none);
+  @include box-shadow(none);
+  @include border-radius(0);
+}
+
+select, input:not([type=submit]):not([type=checkbox]):not([type=radio]), textarea {
+  background: $color-1;
+  border: 2px solid $color-1;
+  font-family: $lato-heavy;
+  text-transform: uppercase;
+  @include input-placeholder($color);
+  text-align: center;
+  color: $color;
+  font-size: 11px;
+  letter-spacing: 1px;
+  padding: 9px;
+  @include transition(background .3s, color .3s);
+
+  .body:not(.page-user) & {
+    color: #fff;
+    @include input-placeholder(#fff);
+  }
+
+  &:focus:not([type=file]) {
+    background: #fff;
+    color: $color;
+    border-color: $color;
+    @include input-placeholder($color);
+  }
+
+  &.error {
+    border-color: red;
+  }
+}
+
+textarea {
+  resize: none;
+}
+
+select {
+  cursor: pointer;
+  padding-right: 40px;
+  background: #fff url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAJCAQAAACoRNXiAAAAK0lEQVQY02NgoA0w/mb8Hw6/oUuaIkmaYuotgEoVYDd6LVBqLW6bj5HsWAAv0Bfed1VYOwAAAABJRU5ErkJggg==') 96% 50% no-repeat;
+}
+
+.form {
+
+  .form-item, .form-actions {
+    margin: 0 0 18px;
+
+    @media (min-width: $bp-small) {
+      margin-bottom: 28px;
+    }
+  }
+
+  .form-submit {
+    font-size: 11px;
+    font-family: $lato-heavy;
+    text-transform: uppercase;
+    border: 2px solid $color;
+    color: $color;
+    padding: 7px 15px;
+    margin: 0;
+    background: transparent;
+    letter-spacing: 1px;
+    @include transition(background .3s, color .3s, border-color .3s);
+
+    &:hover {
+      text-decoration: none;
+      background: $color-1;
+      color: #fff;
+      border-color: $color-1;
+    }
+  }
+}
+
+.form-submit {
+  cursor: pointer;
+}

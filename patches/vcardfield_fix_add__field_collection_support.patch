@@ -1,0 +1,80 @@
+Index: trunk/sites/all/modules/contrib/vcardfield/vcardfield.module
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- trunk/sites/all/modules/contrib/vcardfield/vcardfield.module	(revision 0b214b73841497c8bea5dfdf708b191fa4d1275d)
++++ trunk/sites/all/modules/contrib/vcardfield/vcardfield.module	(revision )
+@@ -78,6 +78,9 @@
+         if ($entity_type == 'user') {
+           $item['nid'] = $entity->uid;
+         }
++        if ($entity_type == 'field_collection_item') {
++          $item['nid'] = $entity->item_id;
++        }
+           $item['type'] = $entity_type;
+           $item['delta'] = $delta;
+         $element[$delta]['#markup'] = theme('vcardfield', $item);
+@@ -356,11 +359,19 @@
+        }
+       $ent = field_info_instances($type, $type);
+    }
++  if ($type == 'field_collection_item') {
++    $entity = entity_load($type, array($nid));
++    if (!isset($entity[$nid])) {
++      drupal_not_found();
++      drupal_exit();
++    }
++    $ent = field_info_instances($type, $entity[$nid]->field_name);
++  }
+ 
+    $field_name = 'field_'.$field;
+    $field_info = field_info_field($field_name);
+ 
+-  $lang = $entity[$nid]->language;
++  $lang = !empty($entity[$nid]->language) ? $entity[$nid]->language : '';
+   if ($lang == '') {
+     $lang = 'und';
+   }
+Index: trunk/sites/all/patches/vcardfield_fix_add__field_collection_support.patch
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- trunk/sites/all/patches/vcardfield_fix_add__field_collection_support.patch	(revision 0b214b73841497c8bea5dfdf708b191fa4d1275d)
++++ trunk/sites/all/patches/vcardfield_fix_add__field_collection_support.patch	(revision 0b214b73841497c8bea5dfdf708b191fa4d1275d)
+@@ -1,34 +0,0 @@
+-Index: trunk/sites/all/modules/contrib/vcardfield/vcardfield.module
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+---- trunk/sites/all/modules/contrib/vcardfield/vcardfield.module	(revision b66c66b8a241b105bfb2fa9a4c2327a2d7044b96)
+-+++ trunk/sites/all/modules/contrib/vcardfield/vcardfield.module	(revision )
+-@@ -78,6 +78,9 @@
+-         if ($entity_type == 'user') {
+-           $item['nid'] = $entity->uid;
+-         }
+-+        if ($entity_type == 'field_collection_item') {
+-+          $item['nid'] = $entity->item_id;
+-+        }
+-           $item['type'] = $entity_type;
+-           $item['delta'] = $delta;
+-         $element[$delta]['#markup'] = theme('vcardfield', $item);
+-@@ -355,7 +358,15 @@
+-         drupal_exit();
+-        }
+-       $ent = field_info_instances($type, $type);
+-+   }
+-+  if ($type == 'field_collection_item') {
+-+    $entity = entity_load($type, array($nid));
+-+    if (!isset($entity[$nid])) {
+-+      drupal_not_found();
+-+      drupal_exit();
+-+    }
+-+    $ent = field_info_instances($type, $entity[$nid]->field_name);
+--   }
+-+  }
+- 
+-    $field_name = 'field_'.$field;
+-    $field_info = field_info_field($field_name);

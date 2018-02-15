@@ -1,0 +1,36 @@
+.section-pm {
+
+  .tablet &, .mobile & {
+    background: image-url('bg/bg.jpg') no-repeat 100% 100%;
+    background-size: cover;
+  }
+
+  .part-with-bg {
+    min-height: 612px;
+  }
+
+  .btn {
+    margin-top: 14px;
+    color: #fff;
+    border-color: #fff;
+
+    &:hover {
+      color: $color;
+      background: #fff;
+      border-color: #fff;
+    }
+  }
+
+  .title {
+    right: 0;
+    bottom: 0;
+    width: 590px;
+    position: absolute;
+    text-align: right;
+    display: none;
+
+    @media (min-width: $bp-middle) {
+      display: block;
+    }
+  }
+}

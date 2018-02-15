@@ -1,0 +1,57 @@
+.section-items {
+  background: $color-3;
+  text-align: center;
+  padding: 35px 0;
+
+  @media (min-width: $bp-small) {
+    padding: 95px 0;
+  }
+
+  .item {
+    background: #fff;
+    text-align: left;
+    position: relative;
+    margin-bottom: 20px;
+
+
+    @media (min-width: $bp-small) {
+      display: inline-block;
+      vertical-align: top;
+      max-width: 350px;
+      min-height: 422px;
+      margin: 0 35px 30px;
+    }
+
+    @media (min-width: $bp-middle) {
+      margin-bottom: 0;
+    }
+
+    h3 {
+      color: $color;
+      margin-bottom: 14px;
+
+      @media (min-width: $bp-small) {
+        margin-bottom: 24px;
+      }
+    }
+
+    .btn {
+      position: absolute;
+      left: 20px;
+      bottom: 20px;
+
+      @media (min-width: $bp-small) {
+        left: 35px;
+        bottom: 35px;
+      }
+    }
+  }
+
+  .body {
+    padding: 60px 20px;
+
+    @media (min-width: $bp-small) {
+      padding: 94px 35px 85px;
+    }
+  }
+}
